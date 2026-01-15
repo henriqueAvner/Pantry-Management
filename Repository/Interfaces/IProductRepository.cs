@@ -7,4 +7,6 @@ public interface IProductRepository
     Product AddProduct (Product product);
 
     void DeleteProduct(int productId);
+    public Buyer FindBuyerByProductId(int productId);
+
 }

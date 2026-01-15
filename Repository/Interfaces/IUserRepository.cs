@@ -1,6 +1,6 @@
 namespace PantryManagement.Repository.Interfaces;
 using PantryManagement.Models;
-public interface IUser
+public interface IUserRepository
 {
     IEnumerable<User> GetUsers();
     User GetUserById(int userId);

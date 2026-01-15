@@ -9,4 +9,8 @@ public interface IBuyerRepository
 
     void DeleteBuyer(int buyerId);
 
+    public List<Product> FindProductsByBuyer(int buyerId);
+
+    public Buyer AddProductToABuyer (int productId, int buyerId);
+
 }
