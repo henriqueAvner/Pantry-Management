@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: sql_server_db
+    restart: always
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=PantryManagementDB123!
+      - MSSQL_PID=Developer
+    volumes:
+      - sql_data:/var/opt/mssql  # Mantém seus dados salvos
+    networks:
+      - app-network
+
+# O back-end entraria aqui no mesmo arquivo futuramente
+# back-end:
+#   build: .
+#   networks:
+#     - app-network
+#   depends_on:
+#     - db
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  sql_data:

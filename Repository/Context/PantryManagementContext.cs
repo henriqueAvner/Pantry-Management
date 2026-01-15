@@ -11,7 +11,7 @@ public class PantryManagementContext : DbContext, IPantryManagementContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            var connectionString = "Server=127.0.0.1;Database=PantryManagementDB;User=SA;Password=PMDB123!;TrustServerCertiticate=true";
+            var connectionString = "Server=127.0.0.1;Database=PantryManagementDB;User=SA;Password=PantryManagementDB123!;TrustServerCertificate=true";
 
             optionsBuilder.UseSqlServer(connectionString);
         }
