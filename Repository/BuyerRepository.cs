@@ -3,10 +3,11 @@ namespace PantryManagement.Repository;
 
 using PantryManagement.Models;
 using PantryManagement.Repository.Interfaces;
+using PantryManagement.Controllers.DTO;
 
 public class BuyerRepository(PantryManagementContext context) : IBuyerRepository
 {
-    private readonly PantryManagementContext pmContext = context;
+    private protected readonly PantryManagementContext pmContext = context;
 
     public Buyer AddBuyer(Buyer buyer)
     {
@@ -30,16 +31,27 @@ public class BuyerRepository(PantryManagementContext context) : IBuyerRepository
         pmContext.SaveChanges();
     }
 
-    public Buyer GetBuyerById(int buyerId)
+    public BuyerDTO GetBuyerById(int buyerId)
     {
         var findBuyer = pmContext.Buyers.Find(buyerId) ?? throw new KeyNotFoundException("Buyer not found");
 
-        return findBuyer;
+        var currBuyerReturn = new BuyerDTO
+        {
+            BuyerName = findBuyer.BuyerName,
+            BuyerContactInfo = findBuyer.BuyerContactInfo
+        };
+        return currBuyerReturn;
     }
 
-    public IEnumerable<Buyer> GetBuyers()
+    public IEnumerable<BuyerDTO> GetBuyers()
     {
-        return pmContext.Buyers.ToList();
+        var buyerReturn = pmContext.Buyers.Select(b => new BuyerDTO
+        {
+            BuyerName = b.BuyerName,
+            BuyerContactInfo = b.BuyerContactInfo
+        }).ToList();
+
+        return buyerReturn;
     }
 
     public List<Product> FindProductsByBuyer(int buyerId)
@@ -61,4 +73,5 @@ public class BuyerRepository(PantryManagementContext context) : IBuyerRepository
 
 
     }
+
 }

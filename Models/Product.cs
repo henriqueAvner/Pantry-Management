@@ -14,8 +14,7 @@ public class Product
 
     [ForeignKey("BuyerId")]
     public int BuyerId {get; set;}
-
+    public Buyer? Buyer {get;set;}
     public DateTime ExpiresIn {get; set;}
 
-    public Buyer? Buyer {get;set;}
 }

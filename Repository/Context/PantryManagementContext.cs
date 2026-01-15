@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PantryManagement.Models;
 
+namespace PantryManagement.Repository;
+
 public class PantryManagementContext : DbContext, IPantryManagementContext
 {
     public DbSet<User> Users { get; set; } = null!;
